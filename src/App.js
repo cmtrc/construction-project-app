@@ -1,24 +1,58 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import NewItem from './components/NewItem';
+import TodoList from './components/TodoList';
 
 function App() {
+  const items = [
+    {
+      description: "QA on main circuits - 2231.B",
+      category: "electrical",
+      dueDate: null,
+      isChecked: false,
+    },
+    {
+      description: "Add additional wall - 2231.B303",
+      category: "framing",
+      dueDate: null,
+      isChecked: false,
+    },
+    {
+      description: "Install twin card for modBus - 2232.C101",
+      category: "plumbing",
+      dueDate: null,
+      isChecked: false,
+    },
+  ];
+
+  const [todoList, setTodoList] = useState(items);
+
+
+  const addItem = (item) => {
+    setTodoList([...todoList, item]);
+  };
+
+const removeItem = (item) => {
+    setTodoList(todoList.filter((a) => a.description !== item.description));
+  };
+
+  const updateItem = (updatedField, updatedValue, item) => {
+setTodoList(
+  todoList.map((todo) => {
+if(todo.description === item.description) {
+todo[updatedField]=updatedValue
+}
+return todo;
+  }
+))
+   
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoList items={todoList} removeItem={removeItem} updateItem={updateItem}/>
+    <NewItem addItem={addItem} />
+  </div>
   );
 }
 
