@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Filter from './components/Filter';
 import NewItem from './components/NewItem';
 import TodoList from './components/TodoList';
 
@@ -26,33 +27,34 @@ function App() {
   ];
 
   const [todoList, setTodoList] = useState(items);
-
+  const [filter, setFilter] = useState("")
 
   const addItem = (item) => {
     setTodoList([...todoList, item]);
   };
 
-const removeItem = (item) => {
+  const removeItem = (item) => {
     setTodoList(todoList.filter((a) => a.description !== item.description));
   };
 
   const updateItem = (updatedField, updatedValue, item) => {
-setTodoList(
-  todoList.map((todo) => {
-if(todo.description === item.description) {
-todo[updatedField]=updatedValue
-}
-return todo;
-  }
-))
-   
+    setTodoList(
+      todoList.map((todo) => {
+        if (todo.description === item.description) {
+          todo[updatedField] = updatedValue
+        }
+        return todo;
+      }
+      ))
+
   };
 
   return (
     <div className="App">
-    <TodoList items={todoList} removeItem={removeItem} updateItem={updateItem}/>
-    <NewItem addItem={addItem} />
-  </div>
+      <Filter setFilter={setFilter} />
+      <TodoList items={todoList} removeItem={removeItem} updateItem={updateItem} filter={filter} />
+      <NewItem addItem={addItem} />
+    </div>
   );
 }
 
