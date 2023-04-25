@@ -6,14 +6,18 @@
 .todo-list {
   justify-content: center;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
 .todo-list-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-
+  justify-content: space-between;
+  background: lightgray;
+  width: 25rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
 
 .filter-item {
