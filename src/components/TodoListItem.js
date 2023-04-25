@@ -8,14 +8,21 @@ const TodoListItem = ({ item, updateItem }) => {
 
     return (
         <div onClick={() => setIsEditing(true)}>
-            <div style={{ textDecoration: item.isChecked ? "line-through" : "none" }}>
+            <div style={{ textDecoration: item.isChecked ? "line-through" : "none", display: "flex", flexDirection: "row" }}>
                 <input type="checkbox" checked={item.isChecked} onChange={(e) => updateItem("isChecked", e.target.checked, item)} />
-                <span>
-                    {item.description}
-                </span>
+                <div className="todo-row">
+                    <span>
+                        Description: {item.description}
+                    </span>
+                    <span>
+                        Due date: {item.dueDate}
+                    </span>
+                    <span>
+                        Category: {item.category}
+                    </span>
+                </div>
             </div>
             {isEditing && <UpdateItem currentItem={item} updateItem={updateItem} close={() => setIsEditing(false)} />}
-
         </div >
     )
 

@@ -10,12 +10,20 @@
   flex-direction: column;
 }
 
+.todo-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1rem;
+  line-height: 2rem;
+}
+
 .todo-list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: lightgray;
-  width: 25rem;
+  width: 30rem;
   padding: 0.5rem;
   margin: 0.5rem;
 }
