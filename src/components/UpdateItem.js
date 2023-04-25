@@ -61,6 +61,7 @@ const UpdateItem = ({ updateItem, currentItem, close }) => {
                 type="date"
                 id="dueDate"
                 name="dueDate"
+                onChange={handleChange}
                 value={item.dueDate}
                 min="2023-04-25"
                 max="2023-05-30"
