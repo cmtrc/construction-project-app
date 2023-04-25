@@ -63,9 +63,11 @@ function App() {
 
   return (
     <div className="App">
-      <Filter setFilter={setFilter} />
-      <TodoList items={todoList} removeItem={removeItem} updateItem={updateItem} filter={filter} />
-      <NewItem addItem={addItem} />
+      <div className="container">
+        <Filter setFilter={setFilter} />
+        <TodoList items={todoList} removeItem={removeItem} updateItem={updateItem} filter={filter} />
+        <NewItem addItem={addItem} />
+      </div>
     </div>
   );
 }
