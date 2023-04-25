@@ -5,7 +5,9 @@ import NewItem from './components/NewItem';
 import TodoList from './components/TodoList';
 
 function App() {
-  const items = [
+  const TODO_CACHE = "todo-cache"
+
+  let items = [
     {
       description: "QA on main circuits - 2231.B",
       category: "electrical",
@@ -26,15 +28,24 @@ function App() {
     },
   ];
 
+  let cachedTodo = localStorage.getItem(TODO_CACHE) ? JSON.parse(localStorage.getItem(TODO_CACHE)) : [];
+
+  if (cachedTodo.length > 0) {
+    items = cachedTodo;
+  }
+
   const [todoList, setTodoList] = useState(items);
   const [filter, setFilter] = useState("")
 
   const addItem = (item) => {
     setTodoList([...todoList, item]);
+    localStorage.setItem(TODO_CACHE, JSON.stringify(todoList))
   };
 
   const removeItem = (item) => {
     setTodoList(todoList.filter((a) => a.description !== item.description));
+    localStorage.setItem(TODO_CACHE, JSON.stringify(todoList))
+
   };
 
   const updateItem = (updatedField, updatedValue, item) => {
@@ -46,6 +57,7 @@ function App() {
         return todo;
       }
       ))
+    localStorage.setItem(TODO_CACHE, JSON.stringify(todoList))
 
   };
 
