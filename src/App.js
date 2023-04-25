@@ -28,13 +28,9 @@ function App() {
     },
   ];
 
-  let cachedTodo = localStorage.getItem(TODO_CACHE) ? JSON.parse(localStorage.getItem(TODO_CACHE)) : [];
+  let cachedTodo = localStorage.getItem(TODO_CACHE) ? JSON.parse(localStorage.getItem(TODO_CACHE)) : items;
 
-  if (cachedTodo.length > 0) {
-    items = cachedTodo;
-  }
-
-  const [todoList, setTodoList] = useState(items);
+  const [todoList, setTodoList] = useState(cachedTodo);
   const [filter, setFilter] = useState("")
 
   const addItem = (item) => {
